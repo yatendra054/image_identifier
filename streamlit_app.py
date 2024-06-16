@@ -7,7 +7,7 @@ from PIL import Image
 import cv2
 from mtcnn import MTCNN
 import os
-import streamlit as st
+import streamlit_app as st
 detector = MTCNN()
 
 model = VGGFace(model="resnet50", include_top=False,input_shape=(224,224,3),pooling="avg")
