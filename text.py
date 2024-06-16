@@ -13,8 +13,8 @@ filesname = pickle.load(open('filesname.pkl','rb'))
 model = VGGFace(model='resnet50',include_top=False,input_shape=(224,224,3),pooling='avg')
 
 dectector = MTCNN()
-sample_img = cv2.imread('simple/Photo.png')
-sample_img = cv2.resize(sample_img,(300,300))
+sample_img = cv2.imread('simple/Harsh.png')
+sample_img = cv2.resize(sample_img,(250,250))
 
 results = dectector.detect_faces(sample_img)
 x,y,width,height = results[0]['box']
