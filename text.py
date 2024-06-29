@@ -13,13 +13,13 @@ filesname = pickle.load(open('filesname.pkl','rb'))
 model = VGGFace(model='resnet50',include_top=False,input_shape=(224,224,3),pooling='avg')
 
 dectector = MTCNN()
-sample_img = cv2.imread('simple/Harsh.png')
-sample_img = cv2.resize(sample_img,(250,250))
+sample_img = cv2.imread('simple/paa.jpg')
+sample_img_rgb = cv2.cvtColor(sample_img, cv2.COLOR_BGR2RGB)
 
-results = dectector.detect_faces(sample_img)
+results = dectector.detect_faces(sample_img_rgb)
 x,y,width,height = results[0]['box']
 
-face_img = sample_img[y:y+height,x:x+width]
+face_img = sample_img_rgb[y:y+height,x:x+width]
 
 image = Image.fromarray(face_img)
 image = image.resize((224,224))
@@ -36,9 +36,13 @@ for i in range(len(features_list)):
     similarity.append(cosine_similarity(result.reshape(1, -1), features_list[i].reshape(1, -1))[0][0])
 index_pos=sorted(list(enumerate(similarity)), reverse=True, key=lambda x:x[1])[0][0]
 
+full_path = filesname[index_pos]
+name = full_path.split('\\')[-2].replace("_"," ")
 temp_img = cv2.imread(filesname[index_pos])
 temp_img =cv2.resize(temp_img, (224,224))
-simple_img = cv2.resize(sample_img, (224,224))
-cv2.imshow('Input image', sample_img)
+simple_img_resize = cv2.resize(sample_img, (224,224))
+print(name)
+cv2.imshow('Input image', simple_img_resize)
 cv2.imshow('Predicted image', temp_img)
 cv2.waitKey(0)
+cv2.destroyAllWindows()
