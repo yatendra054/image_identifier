@@ -52,19 +52,16 @@ if uploading_image is not None:
     if save_upload_image(uploading_image):
         img_read = Image.open(uploading_image)
         new_image = img_read.resize((300,300))
-        st.image(new_image)
 
         features = extract_features(os.path.join('upload', uploading_image.name), model, detector)
         index_pos = predict_img(features_list,features)
 
         col1, col2 = st.beta_columns(2)
 
-        predict_like = " ".join(filenames[index_pos].spilt('//')[1].split('_'))
+        predict_like = " ".join(filenames[index_pos].spilt('//')[-2].replace('_',' '))
         with col1:
             st.header("Your Uploaded Image")
             st.image(new_image)
         with col2:
             st.header("Seems like" + predict_like)
-            st.image(filenames[index_pos], width=300)
-
-
+            st.image(filenames[index_pos], width=True)

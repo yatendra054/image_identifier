@@ -13,7 +13,7 @@ filesname = pickle.load(open('filesname.pkl','rb'))
 model = VGGFace(model='resnet50',include_top=False,input_shape=(224,224,3),pooling='avg')
 
 dectector = MTCNN()
-sample_img = cv2.imread('simple/paa.jpg')
+sample_img = cv2.imread('simple/Mam.jpg')
 sample_img_rgb = cv2.cvtColor(sample_img, cv2.COLOR_BGR2RGB)
 
 results = dectector.detect_faces(sample_img_rgb)
@@ -39,8 +39,8 @@ index_pos=sorted(list(enumerate(similarity)), reverse=True, key=lambda x:x[1])[0
 full_path = filesname[index_pos]
 name = full_path.split('\\')[-2].replace("_"," ")
 temp_img = cv2.imread(filesname[index_pos])
-temp_img =cv2.resize(temp_img, (224,224))
-simple_img_resize = cv2.resize(sample_img, (224,224))
+temp_img =cv2.resize(temp_img, (300,300))
+simple_img_resize = cv2.resize(sample_img, (300,300))
 print(name)
 cv2.imshow('Input image', simple_img_resize)
 cv2.imshow('Predicted image', temp_img)
