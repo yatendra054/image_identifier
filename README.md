@@ -14,8 +14,10 @@ This project leverages deep learning, utilizing TensorFlow, the KGGFACE model, a
 pip install
 ```
 
-<img src="image/image1.png" alt="Image" width="35%" height="240" style="display;">
+
 <img src="image/web.png" alt="Image" width="35%" height="240" style="display;">
+
+<img src="image/image1.png" alt="Image" width="35%" height="240" style="display;">
 
 
 
